@@ -1,7 +1,7 @@
 import { createServer } from 'http';
 import cors from 'cors';
-import { config } from 'dotenv';
-import express, { json } from 'express';
+import dotenv from 'dotenv';
+import express from 'express';
 import Stripe from 'stripe';
 import connectDB from './db/connectdb.js';
 import authRouter from './routes/authRoutes.js';
@@ -9,9 +9,9 @@ import multer from 'multer';
 import adminRouter from './routes/adminRoutes.js';
 import hotelRouter from './routes/hotelRoutes.js';
 const app=express();
-config();
+dotenv.config();
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
 const storage = multer.memoryStorage();
 const upload = multer({
