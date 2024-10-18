@@ -44,10 +44,15 @@ function Navbar(){
     const handleLogout =async() => {
         await dispatch(logoutUser());
         navigate('/');
+        closeDrawer();
     }
    const handleBookings = ()=>{
     closeDrawer();
     navigate('/mybookings');
+   }
+   const routeHotel = ()=>{
+    closeDrawer();
+    navigate(`/addhotel/${userInfo?._id}`);
    }
 
     return (
@@ -85,6 +90,9 @@ function Navbar(){
                     <ListItem className="underline" onClick={handleBookings}>
                     My Bookings
                     </ListItem>
+                    {userInfo?.isAdmin &&<ListItem onClick={routeHotel}>
+                        Add Hotel    
+                    </ListItem>}
                     
                     {userInfo && <Link to="/profile"><ListItem onClick={closeDrawer}>
                     <ListItemPrefix>

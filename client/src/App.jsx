@@ -27,7 +27,7 @@ const App=()=>{
         <Navbar/>
         <Routes>
           <Route path="/" element={<Homepage/>}/>
-          {/* <Route path='/' element={<Hotel/>}/> */}
+          <Route path='/addhotel/:id' element={<Hotel/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path='/hotel-page/:id' element={<HotelInfo/>}/>
