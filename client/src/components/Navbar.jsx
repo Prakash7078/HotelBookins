@@ -87,9 +87,9 @@ function Navbar(){
                     />
                 </div>
                 <List>
-                    <ListItem className="underline" onClick={handleBookings}>
+                    {userInfo && <ListItem className="underline" onClick={handleBookings}>
                     My Bookings
-                    </ListItem>
+                    </ListItem>}
                     {userInfo?.isAdmin &&<ListItem onClick={routeHotel}>
                         Add Hotel    
                     </ListItem>}
