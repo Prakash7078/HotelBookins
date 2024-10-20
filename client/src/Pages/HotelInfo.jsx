@@ -77,7 +77,7 @@ function HotelInfo(){
                         Luxury bed <span className="text-green-500 ml-3">${hotel.price}</span>
                     </div>
                     <div className="flex items-center text-blue-gray-400 mt-3">
-                        <FaPhone/> <span className=" underline ml-2">+1 {hotel.contact}</span>
+                        <FaPhone/> <span className=" underline ml-2"> <a href={`tel:${hotel?.contact}`}>{hotel?.contact}</a></span>
                     </div>
                 
                 </div>

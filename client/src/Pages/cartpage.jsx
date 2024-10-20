@@ -102,64 +102,72 @@ function Cartpage(){
                           Luxury bed <span className="text-green-500 ml-3">${hotel.price}</span>
                       </div>
                       <div className="flex items-center text-blue-gray-400 mt-3">
-                          <FaPhone/> <span className=" underline ml-2">+1 {hotel.contact}</span>
+                          <FaPhone/> <span className=" underline ml-2"><a href={`tel:${hotel?.contact}`}>{hotel?.contact}</a></span>
                       </div>
                   </div>
                     
                 
           </div>
           <div className='mx-5 '>
+            <div className='flex flex-col md:flex-row gap-5 md:justify-evenly my-10 '>
             <div className='flex flex-col gap-5 my-10'>
-            <div className=''>
-              <Input
-                label='Check In date'
-                type="datetime-local"
-                id="checkIn"
-                min={getTodayDate()} // Disable past dates
-                value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                required
-              />
-            </div>
+              <h1 className='text-xl text-brown-400 underline mb-4'>Check In & Check Out details</h1>
+              <div className=''>
+                <Input
+                  label='Check In date'
+                  type="datetime-local"
+                  id="checkIn"
+                  min={getTodayDate()} // Disable past dates
+                  value={checkIn}
+                  onChange={(e) => setCheckIn(e.target.value)}
+                  required
+                />
+              </div>
 
-            <div className=''>
-              <Input
-                label='Check Out date'
-                type="datetime-local"
-                id="checkOut"
-                min={getTodayDate()} // Disable past dates
-                value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                required
-              />
-            </div>
-            </div>
-           
-            <h1 className='text-xl text-brown-400 underline mb-4'>Guest Information</h1>
-            <div className='flex flex-col gap-5'>
-              <Input type="text" placeholder="Address Line 1" value={userAddress?.street}  required label='Address Line' onChange={(e)=>setUserAddress({...userAddress,["street"]:e.target.value})}/>
-              <span className='text-sm text-red-400'>Country* </span>
-              <CountryDropdown
-                value={userAddress?.country}
-                className=" border-gray-500 border-b-2 rounded-md px-4 py-2 "
-                onChange={(val)=>setUserAddress({...userAddress,["country"]:val})}
-                
-              />
-              <span className='text-sm text-red-400'>State*</span>
-              <RegionDropdown
-                  value={userAddress?.state}
-                  className=" border-gray-500 border-b-2 rounded-md px-4 py-2 "
-                  country={userAddress?.country}
-                  onChange={(val)=>setUserAddress({...userAddress,["state"]:val})}
-
+              <div className=''>
+                <Input
+                  label='Check Out date'
+                  type="datetime-local"
+                  id="checkOut"
+                  min={getTodayDate()} // Disable past dates
+                  value={checkOut}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                  required
+                />
+              </div>
+              </div>
+              <div>
+                <h1 className='text-xl text-brown-400 underline mb-4'>Guest Information</h1>
+                <div className='flex flex-col gap-5'>
+                  <Input type="text" placeholder="Address Line 1" value={userAddress?.street}  required label='Address Line' onChange={(e)=>setUserAddress({...userAddress,["street"]:e.target.value})}/>
+                  <span className='text-sm text-red-400'>Country* </span>
+                  <CountryDropdown
+                    value={userAddress?.country}
+                    className=" border-gray-500 border-b-2 rounded-md px-4 py-2 "
+                    onChange={(val)=>setUserAddress({...userAddress,["country"]:val})}
+                    
                   />
-              <Input type="text" value={userAddress?.city} placeholder="City" required label='city' onChange={(e)=>setUserAddress({...userAddress,["city"]:e.target.value})}/>
-              <Input type='text' value={userAddress?.zip} placeholder='postal Code' required label='postal Code' onChange={(e)=>setUserAddress({...userAddress,["zip"]:e.target.value})}/>
-              
+                  <span className='text-sm text-red-400'>State*</span>
+                  <RegionDropdown
+                      value={userAddress?.state}
+                      className=" border-gray-500 border-b-2 rounded-md px-4 py-2 "
+                      country={userAddress?.country}
+                      onChange={(val)=>setUserAddress({...userAddress,["state"]:val})}
 
+                      />
+                  <Input type="text" value={userAddress?.city} placeholder="City" required label='city' onChange={(e)=>setUserAddress({...userAddress,["city"]:e.target.value})}/>
+                  <Input type='text' value={userAddress?.zip} placeholder='postal Code' required label='postal Code' onChange={(e)=>setUserAddress({...userAddress,["zip"]:e.target.value})}/>
+                  
+
+              </div>
+              </div>
+            
             </div>
-            <h1 className='text-xl text-brown-400 underline mt-10 mb-4'>Card Information</h1>
-            <CardElement className='my-10'/>
+            <div className='mx-auto md:w-3/4 md:mt-14'>
+                <h1 className='text-xl text-brown-400 underline mt-10 mb-4'>Card Information</h1>
+                <CardElement className='my-10 '/>
+              </div>
+            
             <Button onClick={handleSubmit} className='bg-green-600 w-full mb-10' >Confirm Booking</Button>
           </div>
         

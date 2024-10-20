@@ -43,7 +43,7 @@ function Login(props){
     },[navigate,userInfo])
     return(
         <div>
-            <Card>
+            <Card className="mx-auto md:w-1/2">
                 <CardHeader className="p-5 text-center">
                     <Typography className="font-bold">
                         Login

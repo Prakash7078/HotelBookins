@@ -53,7 +53,7 @@ import {
     },[navigate,userInfo])
     return (
         <div>
-            <Card>
+            <Card className='md:w-1/2 mx-auto'>
                 <CardHeader className="p-5 text-center">
                     <Typography className="font-bold">
                         Sign Up

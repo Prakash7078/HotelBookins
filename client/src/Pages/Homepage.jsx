@@ -84,7 +84,7 @@ export default function Homepage() {
             </div>
 
             {/* Hotels list */}
-            <div className="flex flex-col md:flex-row flex-wrap gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredHotels?.map((item) => (
                     <div key={item._id} className="h-fit">
                         <div className='sm:mx-5 position-relative h-96 flex flex-col gap-10 shadow-lg pb-5 sm:h-96 cursor-pointer group relative'>
@@ -96,23 +96,23 @@ export default function Homepage() {
                                 />
                             </div>
 
-                            <div className="bg-lime-300 text-black absolute flex flex-col justify-center gap-2 items-center bottom-0 left-0 right-0 h-0 overflow-hidden group-hover:h-full transition-[height_0.5s] duration-500 bg-darkblue rounded-xl">
+                            <div className="bg-black text-white absolute flex flex-col justify-center gap-2 items-center bottom-0 left-0 right-0 h-0 overflow-hidden group-hover:h-full transition-[height_0.5s] duration-500 bg-darkblue rounded-xl">
                                 <h3 className='text-2xl font-medium mb-5'>{item.title}</h3>
                                 <p className='px-2 text-center text-lg '>{item.content}</p>
                                 <div className="flex items-center gap-3">
                                     <FaPhone />
-                                    <h1 className="text-blue-700 underline font-bold">{item?.contact}</h1>
+                                    <h1 className="text-blue-700 underline font-bold "><a href={`tel:${item?.contact}`}>{item?.contact}</a></h1>
                                 </div>
                                 <p>{item?.location}</p>
                                 <h1>{item?.country}</h1>
                                 <h1>{item?.region}</h1>
                                 <div className="flex items-center gap-4">
                                     <span>Available rooms</span>
-                                    <h1 className="text-red-800 font-bold underline">{item?.rooms} </h1>
+                                    <h1 className="font-bold underline">{item?.rooms} </h1>
                                 </div>
                                 <div className="flex justify-between gap-4">
                                     <h1>Luxury Room Price</h1>
-                                    <h1 className="underline text-red-800 font-bold">${item?.price}</h1>
+                                    <h1 className="underline  font-bold">${item?.price}</h1>
                                 </div>
                                 <Button onClick={() => handlePayment(item)} className="border-2 bg-white text-black position-absolute mx-auto block p-2 w-fit border-green-100 shadow-md">Book Now</Button>
                             </div>

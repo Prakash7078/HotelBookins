@@ -21,7 +21,7 @@ const Mybookings=()=>{
     return(
         <div className="mx-10">
             <h1 className="text-xl text-gray-600  underline mb-3">My Bookings</h1>
-            <div className="flex flex-wrap flex-col md:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {bookings?.map((item)=>(
                 <div className=" shadow-lg md:m-4 m-2 p-4 flex flex-col gap-3">
                     <div>
