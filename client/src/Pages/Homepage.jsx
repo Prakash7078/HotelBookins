@@ -53,7 +53,7 @@ export default function Homepage() {
     return (
         <div className="">
             {/* Filter section */}
-            <div className="mx-10 mb-10">
+            <div className="mx-10 mb-36">
             <div className="flex flex-col gap-4 mb-8 bg-gray-100 p-4 rounded-lg">
                 <input
                     type="text"
