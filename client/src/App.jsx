@@ -12,7 +12,6 @@ import { Elements } from '@stripe/react-stripe-js';
 import Profile from "./Pages/Profile";
 import HotelInfo from "./Pages/HotelInfo";
 import Mybookings from "./Pages/Mybookings";
-import Footer from "./components/Footer";
 
 
 const App=()=>{
@@ -40,7 +39,6 @@ const App=()=>{
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/mybookings' element={<Mybookings/>}/>
         </Routes>
-        <Footer/>
       </BrowserRouter>
       <div>
        
