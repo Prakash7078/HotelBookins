@@ -3,7 +3,7 @@ import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import thumps from "../Images/thumbs-up.png";
-// import { updateRegister } from "../redux/authSlice";
+import { updateRegister } from "../redux/authSlice";
 
 function Profile() {
   const [edit, setEdit] = useState(false);
@@ -22,9 +22,9 @@ function Profile() {
     toast.success("Image uploaded succesfully");
   };
 
-  // const handleUpdate = () => {
-  //   dispatch(updateRegister(profiledata));
-  // };
+  const handleUpdate =async () => {
+    await dispatch(updateRegister(profiledata));
+  };
   return (
     <div className="w-full">
       <form className="md:mx-20  mt-10 flex flex-col gap-12 mb-10">

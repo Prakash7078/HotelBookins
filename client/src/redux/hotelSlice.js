@@ -48,6 +48,20 @@ export const getHotels=createAsyncThunk("api/getHotels",async()=>{
         }
     }
 )
+export const saveBookingById=createAsyncThunk(
+    "api/saveBooking",
+    async(payload)=>{
+        try{
+            const result=await axios.post(`${BASE_URL}/api/hotels/savebooking`,payload,{
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+            })
+            return result.data;
+        }catch(err){
+            console.log(err);
+        }
+    });
  export const doHotelPayment=createAsyncThunk(
     "api/doHotelPayment",
     async(payload)=>{
@@ -123,7 +137,6 @@ export const getHotels=createAsyncThunk("api/getHotels",async()=>{
             .addCase(doHotelPayment.fulfilled, (state, { payload }) => {
                 state.load = false;
                 state.clientSecret = payload.clientSecret;
-                toast.success("Card details added!");
             })
             .addCase(doHotelPayment.rejected, (state) => {
                 state.load = false;

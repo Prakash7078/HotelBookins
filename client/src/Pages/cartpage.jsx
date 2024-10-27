@@ -1,12 +1,12 @@
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import { useDispatch,useSelector } from 'react-redux';
-import { doHotelPayment, fetchHotel, getHotels } from '../redux/hotelSlice';
+import { doHotelPayment, fetchHotel, getHotels, saveBookingById } from '../redux/hotelSlice';
 import { toast } from 'react-toastify';
 import { useParams } from'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import data from '../components/bedsdata';
-import { Button, Input, Rating } from '@material-tailwind/react';
+import { Button, Card, Input, Rating } from '@material-tailwind/react';
 import { FaPhone } from 'react-icons/fa';
 import ImageSlider from '../components/ImageSlider';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
@@ -22,12 +22,15 @@ function Cartpage(){
   const[checkIn,setCheckIn]=useState(new Date());
   const [checkOut,setCheckOut]=useState(new Date());
 
-  const getTodayDate = () => {
+  const getTodayDateTime = () => {
     const today = new Date();
     const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); // Month is zero-based
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
     const dd = String(today.getDate()).padStart(2, "0");
-    return `${yyyy}-${mm}-${dd}`;
+    const hh = String(today.getHours()).padStart(2, "0");
+    const min = String(today.getMinutes()).padStart(2, "0");
+  
+    return `${yyyy}-${mm}-${dd}T${hh}:${min}`; // Format for datetime-local
   };
 
 
@@ -43,7 +46,8 @@ function Cartpage(){
   // },[id,dispatch,hotels.length]);
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    if (!stripe || !elements || !userAddress?.street || !userAddress?.city || !userAddress?.state || !userAddress?.country || !userAddress?.zip){
+    const card=elements.getElement(CardElement);
+    if (!stripe || !elements || !card || !userAddress?.street || !userAddress?.city || !userAddress?.state || !userAddress?.country || !userAddress?.zip){
       toast.error("Please fill all the required fields");
       return;
     }
@@ -72,6 +76,7 @@ function Cartpage(){
       console.log(result.error);
       toast.error(result.error.message);
     }else{
+      dispatch(saveBookingById({ id, price, user_id: userInfo?._id, checkIn, checkOut, paymentIntent:result?.paymentIntent }));
       toast.success('Payment Successful');
       navigate('/');
     }
@@ -117,7 +122,7 @@ function Cartpage(){
                   label='Check In date'
                   type="datetime-local"
                   id="checkIn"
-                  min={getTodayDate()} // Disable past dates
+                  min={getTodayDateTime()} // Disable past dates
                   value={checkIn}
                   onChange={(e) => setCheckIn(e.target.value)}
                   required
@@ -129,7 +134,7 @@ function Cartpage(){
                   label='Check Out date'
                   type="datetime-local"
                   id="checkOut"
-                  min={getTodayDate()} // Disable past dates
+                  min={getTodayDateTime()} // Disable past dates
                   value={checkOut}
                   onChange={(e) => setCheckOut(e.target.value)}
                   required

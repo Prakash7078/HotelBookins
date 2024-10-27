@@ -42,6 +42,24 @@ export const signupUser = createAsyncThunk(
       }
     }
   );
+  export const updateRegister=createAsyncThunk(
+    "api/updateRegister",
+    async(payload)=>{
+      console.log("payload",payload);
+      try{
+        const response=await axios.patch(`${BASE_URL}/api/auth/profile`,payload,{
+          headers:{
+            Authorization:`Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const{user,message}=response.data;
+        toast.success(message);
+        localStorage.setItem("userInfo",JSON.stringify(user));
+      }catch(err){
+        throw new Error(err.message);
+      }
+    }
+  )
 export const logoutUser=createAsyncThunk(
   "auth/logout",
   async()=>{
