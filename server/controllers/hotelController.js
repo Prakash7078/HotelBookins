@@ -19,7 +19,7 @@ const getBookingById=expressAsyncHandler(async(req,res)=>{
   return res.status(200).json(bookings);
 });
 const doSaveBooking=expressAsyncHandler(async(req,res)=>{
-  const{id,price,user_id,checkIn,checkOut,paymentIntent}=req.body;
+  const{id,price,user_id,checkIn,checkOut,paymentIntent,roomtype}=req.body;
   console.log(id);
   const hotel=await Hotel.findById(id);
   const user=await User.findById(user_id);
@@ -39,6 +39,7 @@ const doSaveBooking=expressAsyncHandler(async(req,res)=>{
     no_of_days: days,
     checkInDate,
     checkOutDate,
+    roomtype,
     payment_id: paymentIntent.id,
   })
   await booking.save();

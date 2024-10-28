@@ -39,6 +39,7 @@ const Mybookings = () => {
         doc.text(`Check-In Date: ${new Date(booking?.checkInDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}`, 10, 60);
         doc.text(`Check-Out Date: ${new Date(booking?.checkOutDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}`, 10, 70);
         doc.text(`Total Stay: ${booking?.no_of_days} days`, 10, 80);
+        doc.text(`Room Type: ${booking?.roomtype}`, 10,30);
         doc.text(`Payment ID: ${booking?.payment_id}`, 10, 90);
 
         doc.save(`Booking_${booking._id}.pdf`);
@@ -74,6 +75,10 @@ const Mybookings = () => {
                                 month: 'short', 
                                 year: 'numeric'
                             })}</h1>
+                        </div>
+                        <div className="flex justify-between">
+                            <span className="text-blue-gray-600 mr-3">Room Type</span>
+                            <h1>{item?.roomtype}</h1>
                         </div>
                         <div className="flex justify-between">
                             <span className="text-blue-gray-600 mr-3">Total Stay</span>

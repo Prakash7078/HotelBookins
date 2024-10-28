@@ -15,7 +15,7 @@ function Cartpage(){
   const stripe = useStripe();
   const elements = useElements();
   const userInfo=useSelector((state)=>state.auth.userInfo);
-  const {id,price}=useParams();
+  const {id,price,roomtype}=useParams();
   const dispatch=useDispatch();
   const hotel=useSelector((state)=>state.hotel.hotel);
   const [userAddress,setUserAddress]=useState({street:"",city:"",state:"",country:"",zip:""});
@@ -76,7 +76,7 @@ function Cartpage(){
       console.log(result.error);
       toast.error(result.error.message);
     }else{
-      dispatch(saveBookingById({ id, price, user_id: userInfo?._id, checkIn, checkOut, paymentIntent:result?.paymentIntent }));
+      dispatch(saveBookingById({ id, price, user_id: userInfo?._id, checkIn, checkOut, paymentIntent:result?.paymentIntent,roomtype }));
       toast.success('Payment Successful');
       navigate('/');
     }

@@ -31,7 +31,7 @@ const App=()=>{
           <Route path='/login' element={<Login/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path='/hotel-page/:id' element={<HotelInfo/>}/>
-          <Route path='/cart-page/:id/:price' element={
+          <Route path='/cart-page/:id/:price/:roomtype' element={
               <Elements stripe={stripePromise} >
                 <Cartpage />
               </Elements>

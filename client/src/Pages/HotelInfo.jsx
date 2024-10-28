@@ -19,6 +19,7 @@ function HotelInfo(){
     const hotel=useSelector(state=>state.hotel.hotel);
     const [price,setPrice]=useState(0);
     const[extracharge,setExtracharge]=useState(0);
+    const[roomtype,setRoomtype]=useState("Luxury");
     useEffect(()=>{
         if(!userInfo){
             navigate('/login');
@@ -32,13 +33,15 @@ function HotelInfo(){
         }
     },[hotel])
     const handlePayment=(item)=>{
-        navigate(`/cart-page/${item?._id}/${price+extracharge}`);
+        navigate(`/cart-page/${item?._id}/${price+extracharge}/${roomtype}`);
     }
-    const handleBedToggle=(isChecked,typeamount)=>{
+    const handleBedToggle=(isChecked,typeamount,type)=>{
         if(isChecked){
+            setRoomtype(type);
             setPrice(typeamount);
         }else{
             setPrice(hotel.price);
+            setRoomtype("Luxury");
         }
     }
     const handleToggle=(isChecked,amount)=>{
@@ -140,7 +143,7 @@ function HotelInfo(){
                                 {item?.smoke ? <span className="text-gray-500">Smoking</span> : <span className="text-gray-500">Non-Smoking</span>}
                                 <div className="flex justify-between">
                                     <h1 className="text-green-700">${item.price}</h1>
-                                    <Switch onChange={(e) => handleBedToggle(e.target.checked,Number(item.price))} />
+                                    <Switch onChange={(e) => handleBedToggle(e.target.checked,Number(item.price),item?.type)} />
                                 </div>
 
                             </div>
