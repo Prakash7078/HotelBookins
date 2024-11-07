@@ -76,6 +76,7 @@ function Cartpage(){
     console.log("result after payment",result?.paymentIntent);
     if(result.error){
       console.log(result.error);
+      toast.dismiss()
       toast.error(result.error.message);
     }else{
       dispatch(saveBookingById({ id, price, user_id: userInfo?._id, checkIn, checkOut, paymentIntent:result?.paymentIntent,roomtype }));
