@@ -45,6 +45,7 @@ function Cartpage(){
   //   setHotel(item);
   // },[id,dispatch,hotels.length]);
   const handleSubmit=async(e)=>{
+    toast.loading('loading...')
     e.preventDefault();
     const card=elements.getElement(CardElement);
     if (!stripe || !elements || !card || !userAddress?.street || !userAddress?.city || !userAddress?.state || !userAddress?.country || !userAddress?.zip){
@@ -53,6 +54,7 @@ function Cartpage(){
     }
     const countryCode=lookup.byCountry(userAddress?.country);
     const data=await dispatch(doHotelPayment({id,price,user_id:userInfo?._id,checkIn,checkOut}));
+    toast.dismiss()
     const result=await stripe.confirmCardPayment(data?.payload?.clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement),

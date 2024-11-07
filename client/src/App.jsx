@@ -19,7 +19,7 @@ const App=()=>{
     theme: 'stripe'
   };
  
-  const stripePromise = loadStripe('pk_test_51OL4ddSEiKPvMbBJeUCeuasTsLEAu2RcrXl02IGSYkBoBI0e2I91zeabsoN80lubfAXXI9noVTBmzGZi9735FSUL005wYN5ZAs');
+  const stripePromise = loadStripe('pk_test_51Q7qpqFN0ahseXpHkTF7X49qWRvGRS1EDKcUWTswj7ZLrFTCREoPAKzYkQtXLJ1qTNzwidteYmg3u34ZlwQ78vZM00Tj7lW9gN');
 
   return(
     <div>

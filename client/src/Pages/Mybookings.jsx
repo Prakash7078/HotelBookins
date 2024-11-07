@@ -4,6 +4,7 @@ import { getBookingById, getHotels } from "../redux/hotelSlice";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { FaDownload } from "react-icons/fa6";
+import { Button } from "@material-tailwind/react";
 
 
 const Mybookings = () => {
@@ -50,7 +51,7 @@ const Mybookings = () => {
             <h1 className="text-xl text-gray-600 underline mb-3">My Bookings</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {bookings?.map((item) => (
-                    <div className="shadow-lg md:m-4 m-2 p-4 bg-orange-100 flex flex-col gap-3" key={item._id}>
+                    <div className="shadow-lg md:m-4 m-2 p-4 bg-white flex flex-col gap-3" key={item._id}>
                         <div>
                             <h2 className="text-heading mb-3.5 text-lg font-bold md:text-xl lg:text-2xl 2xl:text-3xl">
                                 {findhotel(item)?.title} <span className="text-gray-600">{findhotel(item)?.region}, {findhotel(item)?.country}</span>
@@ -88,12 +89,12 @@ const Mybookings = () => {
                             <span>Payment ID:</span>
                             <h1 className="text-blue-700">{item?.payment_id}</h1>
                         </div>
-                        <button
-                            onClick={() => downloadPDF(item)}
-                            className=" flex items-center justify-between bg-white mt-4 py-2 px-4 rounded hover:bg-blue-600"
+                        <Button size="sm"
+                            
+                            className=" flex items-center justify-between mt-4 font-serif rounded "
                         >
-                            Download Invoice <span><FaDownload/></span>
-                        </button>
+                            Download Invoice <span onClick={() => downloadPDF(item)} className="bg-red-400 p-4 rounded-full text-white" ><FaDownload/></span>
+                        </Button>
                     </div>
                 ))}
             </div>
