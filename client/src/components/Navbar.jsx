@@ -128,12 +128,12 @@ function Navbar(){
             </div>
             
             <Dialog
-                size="xs"
+                size="lg"
                 open={open}
                 handler={handleOpen}
-                className="bg-transparent shadow-none"
+                className="bg-transparent shadow-none "
             >
-                <Login value={handleOpen} />
+                <Login value={handleOpen}/>
             </Dialog>
 
         </div>
